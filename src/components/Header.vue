@@ -20,7 +20,7 @@
 
 <style scoped>
     .header{
-        background-color: #5a5555;
+        background-color: #444;
         height: 50px;
     }
     img{
@@ -31,14 +31,15 @@
     ul{
         list-style: none;
         float: right;
+        margin: 12px 80px;
     }
     li{
         display: inline-block;
+        margin: 0 10px;
     }
     a{
         text-decoration: none;
         color: #ccc;
         font-size: 14px;
-        margin: 0 10px;
     }
 </style>

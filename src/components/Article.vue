@@ -1,4 +1,5 @@
 <template>
+<div>
     <!--数据正在加载时-->
     <div class="loading" v-if="isLoading">
         <img src="" alt="正在加载数据">
@@ -17,22 +18,28 @@
             </ul>
         </div>
         <div v-html="post.content" class="topic_content markdown-body"></div>
-        <div class="reply">
-            <span>回复</span>
-            <div v-for="(reply,index) in post.replies">
-                <router-link :to=>
-                    <img :src="reply.author.avatar_url" alt="">
+        <span class="reply_count">{{post.reply_count}} 回复</span>
+        <div class="reply">          
+            <div v-for="(reply,index) in post.replies" class="reply_list">
+                <router-link :to="{
+                    name:'user_info',
+                    params: {
+                        name: reply.author.loginname,
+                    }
+                }">
+                    <img :src="reply.author.avatar_url" alt="" width="30px" height="30px">
                 </router-link>
-                <router-link :to=>
+                <router-link :to="{}">
                     <span>{{reply.author.loginname}}</span>
                 </router-link>
                 <span>{{index+1}}楼</span>
                 <!-- <span v-if="reply.ups.length>0">{{reply.ups.length}}</span>
                 <span v-else></span> -->
-                <p v-html="reply.content"></p>
+                <p v-html="reply.content" style="font-size:14px;"></p>
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -107,5 +114,29 @@
         padding: 10px 2px;
         font-size: 12px;
         color: gray;
+    }
+
+    .reply_count{
+        display: block;
+        background-color: #f6f6f6;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .reply{
+        margin-bottom: 20px;
+    }
+
+    .reply .reply_list{
+        background-color: #fff;
+        margin-bottom: 1px;
+        padding: 10px 0 30px 10px;
+    }
+
+    .reply_list span{
+        display: inline-block;
+        vertical-align: top;
+        font-size: 12px;
+        font-weight: bold;
     }
 </style>

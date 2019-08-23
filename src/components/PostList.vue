@@ -31,7 +31,7 @@
                         {{post | tabFormatter}}
                     </span>
                 </span>
-                <router-link :to="{
+                <router-link class="topic_name" :to="{
                     name:'post_content',
                     params:{
                         id:post.id
@@ -186,5 +186,14 @@
         display: inline-block;
         width: 7%;
         text-align: center;
+    }
+
+    a.topic_name{
+        text-decoration: none;
+        color:#333;
+    }
+
+    a.topic_name:hover{
+        text-decoration: black underline;
     }
 </style>

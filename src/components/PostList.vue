@@ -1,11 +1,11 @@
 <template>
 <div class="PostList">
-    <!--数据未显示时-->
+    <!--数据正在加载时-->
     <div class="loading" v-if="isLoading">
         <img src="" alt="正在加载数据">
     </div>
     <!--主题帖子列表-->
-    <div class="posts" else>
+    <div class="posts" v-else>
         <ul>
             <li>
                 <div class="toobar">
@@ -31,10 +31,15 @@
                         {{post | tabFormatter}}
                     </span>
                 </span>
-                <a class="post_title" href="javascript:;">
+                <router-link :to="{
+                    name:'post_content',
+                    params:{
+                        id:post.id
+                    }
+                }">
                     <!--标题-->
                     {{post.title}}
-                </a>
+                </router-link>
                 <span class="last_reply">
                     <!--最终回复时间-->
                     {{post.last_reply_at|formatDate}}
@@ -85,7 +90,7 @@
     .PostList img{
         width: 30px;
         height: 30px;
-        vertical-align: middle;
+        vertical-align: middle; 
     }
 
     ul{
@@ -158,12 +163,12 @@
         font-size: 12px;
         white-space: nowrap;
     }
-    a.post_title{
+    router-link{
         text-decoration: none;
         color: black;
         cursor: pointer;
     }
-    a.post_title:hover{
+    router-link:hover{
         text-decoration: underline;
     }
 

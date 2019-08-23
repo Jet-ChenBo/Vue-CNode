@@ -37,6 +37,11 @@
         display: inline-block;
         margin: 0 10px;
     }
+
+    li a:hover{
+        color: white;
+    }
+
     a{
         text-decoration: none;
         color: #ccc;

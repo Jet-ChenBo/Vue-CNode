@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <div class="main">
-      <PostList></PostList>
+      <router-view name="main"></router-view>
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@ import PostList from './components/PostList'
 export default {
   name: 'App',
   components:{
-    Header,PostList
+    Header,
   }
 }
 </script>
@@ -25,7 +25,7 @@ export default {
     padding: 0;
   }
   .main{
-    width: 90%;
+    width: 98%;
     margin: 0 auto;
   }
   body{

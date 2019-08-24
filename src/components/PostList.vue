@@ -34,7 +34,8 @@
                 <router-link class="topic_name" :to="{
                     name:'post_content',
                     params:{
-                        id:post.id
+                        id:post.id,
+                        name:post.author.loginname
                     }
                 }">
                     <!--标题-->

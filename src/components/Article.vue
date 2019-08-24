@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="Article">
     <!--数据正在加载时-->
     <div class="loading" v-if="isLoading">
         <img src="" alt="正在加载数据">
@@ -66,6 +66,11 @@
         beforeMount(){
             this.isLoading = true
             this.getData()
+        },
+        watch:{
+            '$route'(to,from){
+                this.getData()
+            }
         }
     }
 </script>
@@ -77,6 +82,11 @@
         content: '';
         display: block;
         clear: both;
+    }
+
+    .Article{
+        width: 70%;
+        float: left;
     }
 
     .topic_header{

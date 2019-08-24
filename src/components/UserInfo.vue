@@ -110,7 +110,7 @@
         display: inline-block;
         font-size: 14px;
         color: #778087;
-        margin-top: 10px;
+        margin-top: 10px; 
     }
 
     section :nth-child(3){
@@ -144,6 +144,7 @@
         vertical-align: top;
         margin-top: 15px;
         text-decoration: none;
+        color:#08c;
     }
 
     .create_topic ul li a:hover, .reply_topic ul li a:hover{

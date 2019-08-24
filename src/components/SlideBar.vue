@@ -20,7 +20,7 @@
         </router-link>
         <p>积分: {{post.score}}</p>
     </div>
-    <div class="topbar">作者其他话题</div>
+    <div class="topbar two">作者其他话题</div>
     <div class="other_topics">
         <ul>
             <Li v-for="list in topiclimited">
@@ -36,7 +36,7 @@
             </Li>
         </ul>
     </div>
-    <div class="topbar">作者最近回复</div>
+    <div class="topbar three">作者最近回复</div>
     <div class="recent_replies">
         <ul>
             <Li v-for="list in replylimited">
@@ -96,6 +96,11 @@
         },
         beforeMount(){
             this.getData()
+        },
+        watch:{
+            '$route'(to,from){
+                this.getData()
+            }
         }
     }
 </script>
@@ -116,6 +121,10 @@
         font-size: 13px;
     }
 
+    .two,.three{
+        margin-top: 30px;
+    }
+
     .authorsummary{
         background-color: #fff;
         padding: 10px;
@@ -129,6 +138,28 @@
     }
 
     .authorsummary p{
+        font-size: 14px;
+    }
+
+    .other_topics, .recent_replies{
+        background: #fff;
+    }
+
+    .other_topics ul, .recent_replies ul{
+        list-style: none;
+    }
+
+    .other_topics li, .recent_replies li{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 5px;
+        
+    }
+
+    .other_topics li a, .recent_replies li a{
+        color: #778087;
+        text-decoration: none;
         font-size: 14px;
     }
 

@@ -48,32 +48,45 @@
             </li>
         </ul>
     </div>
+    <!--分页-->
+    <pagination @handleList="renderList"></pagination>
 </div>
 </template>
 
 <script>
+    import pagination from './Pagination'
+
     export default{
         name: 'PostList',
         data(){
             return {
                 isLoading: false,
-                posts:[] // 数据列表
+                posts:[], // 数据列表
+                postPage: 1
             }
+        },
+        components:{
+            pagination
         },
         methods:{
             getData(){
                 this.$http.get('https://cnodejs.org/api/v1/topics',{
-                    page:1,
-                    limit:20
+                    params:{
+                        page:this.postPage,
+                        limit:20
+                    }
                 })
                 .then(res=>{
                     this.isLoading = false
-                    console.log(res)
                     this.posts = res.data.data
                 })
                 .catch(err=>{
 
                 })
+            },
+            renderList(value){
+                this.postPage = value
+                this.getData()
             }
         },
         beforeMount(){

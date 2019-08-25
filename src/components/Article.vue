@@ -2,7 +2,7 @@
 <div class="Article">
     <!--数据正在加载时-->
     <div class="loading" v-if="isLoading">
-        <img src="" alt="正在加载数据">
+        <img src="../assets/loading.gif" alt="正在加载数据">
     </div>
     <div v-else>
         <div class="topic_header">

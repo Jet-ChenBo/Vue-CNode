@@ -27,9 +27,20 @@ export default {
   }
   .main{
     width: 98%;
+    height: 100%;
     margin: 0 auto;
   }
   body{
     background-color: #e1e1e1;
+  }
+
+  .loading{
+    text-align: center;
+    margin-top: 25vh;
+  }
+
+  .loading img {
+      width: 400px !important;
+      height: 400px !important;
   }
 </style>

@@ -9,18 +9,53 @@
         <ul>
             <li>
                 <div class="toobar">
-                    <span class="active">全部</span>
-                    <span>精华</span>
-                    <span>分享</span>
-                    <span>问答</span>
-                    <span>招聘</span>
+                    <router-link :to="{
+                        name: 'topic_type',
+                        params:{
+                            topictype: 'all'
+                        }
+                    }">
+                        <a>全部</a>
+                    </router-link>
+                    <router-link :click="btnClick" :to="{
+                        name: 'topic_type',
+                        params:{
+                            topictype: 'good'
+                        }
+                    }">
+                        <a>精华</a>
+                    </router-link>
+                    <router-link :to="{
+                        name: 'topic_type',
+                        params:{
+                            topictype: 'share'
+                        }
+                    }">
+                        <a>分享</a>
+                    </router-link>
+                    <router-link :to="{
+                        name: 'topic_type',
+                        params:{
+                            topictype: 'ask'
+                        }
+                    }">
+                        <a>问答</a>
+                    </router-link>
+                    <router-link :to="{
+                        name: 'topic_type',
+                        params:{
+                            topictype: 'job'
+                        }
+                    }">
+                        <a>招聘</a>
+                    </router-link>
                 </div>
             </li>
             <li v-for='post in posts'>
                 <img :src="post.author.avatar_url" alt="用户头像">
                 <span class="reply_and_count">
                     <!--回复数/浏览量-->
-                    <span class="reply_count">{{post.reply_count}}</span>
+                    <span class="reply_counts">{{post.reply_count}}</span>
                     <span style="color:black; font-size: 12px">/</span>
                     <span class="visit_count">{{post.visit_count}}</span>
                 </span>
@@ -47,14 +82,16 @@
                 </span>
             </li>
         </ul>
+        <!--分页-->
+        <pagination @handleList="renderList"></pagination>
     </div>
-    <!--分页-->
-    <pagination @handleList="renderList"></pagination>
+    
 </div>
 </template>
 
 <script>
     import pagination from './Pagination'
+    import $ from 'jquery'
 
     export default{
         name: 'PostList',
@@ -73,7 +110,8 @@
                 this.$http.get('https://cnodejs.org/api/v1/topics',{
                     params:{
                         page:this.postPage,
-                        limit:20
+                        limit:20,
+                        tab:this.$route.params.topictype
                     }
                 })
                 .then(res=>{
@@ -87,11 +125,19 @@
             renderList(value){
                 this.postPage = value
                 this.getData()
+            },
+            btnClick(){
+                $(this).addClass('active').siblings().removeClass('active')
             }
         },
         beforeMount(){
             this.isLoading = true
             this.getData()
+        },
+        watch:{
+            $route(to,from){
+                this.getData()
+            }
         }
     }
 </script>
@@ -111,7 +157,6 @@
         padding: 0;
         list-style: none;
         width: 100%;
-        max-width: 1344px;
     }
 
     li{
@@ -125,22 +170,23 @@
         font-size: 15px;
     }
 
-    .toobar span{
+    .toobar a{
         padding: 2px;
         color: #80bd01;
         font-size: 14px;
-        margin: 0 10px;
+        margin: 0 5px;
         cursor: pointer;
+        text-decoration: none;
     }
 
-    .toobar span:hover{
+    .toobar a:hover{
         color: #005580;
     }
 
-    .toobar span.active{
+    .router-link-active a{
         background-color: #80bd01;
         border-radius: 4px;
-        color: white;
+        color: white !important;
     }
 
     ul li:not(:first-child){
@@ -186,7 +232,7 @@
         text-decoration: underline;
     }
 
-    .reply_count{
+    .reply_counts{
         color: #9e78c0;
         margin-right: -4px;
     }

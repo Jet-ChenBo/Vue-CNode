@@ -17,6 +17,13 @@ export default new Router({
       }
     },
     {
+      name: 'topic_type',
+      path: '/:topictype',
+      components:{
+        main:PostList,
+      }
+    },
+    {
       name: 'post_content',
       path: '/topic/:id&author=:name',
       components:{

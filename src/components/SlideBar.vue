@@ -23,7 +23,7 @@
     <div class="topbar two">作者其他话题</div>
     <div class="other_topics">
         <ul>
-            <Li v-for="list in topiclimited">
+            <li v-for="list in topiclimited">
                 <router-link :to="{
                     name: 'post_content',
                     params:{
@@ -33,13 +33,13 @@
                 }">
                     {{list.title}}  
                 </router-link>               
-            </Li>
+            </li>
         </ul>
     </div>
     <div class="topbar three">作者最近回复</div>
     <div class="recent_replies">
         <ul>
-            <Li v-for="list in replylimited">
+            <li v-for="list in replylimited">
                 <router-link :to="{
                     name: 'post_content',
                     params:{
@@ -49,7 +49,7 @@
                 }">
                     {{list.title}}  
                 </router-link>  
-            </Li>
+            </li>
         </ul>
     </div>
 </div>
@@ -105,7 +105,7 @@
     }
 </script>
 
-<style>
+<style scoped>
      .slideBar{
         margin-top: 20px;
         margin-left: 1%;

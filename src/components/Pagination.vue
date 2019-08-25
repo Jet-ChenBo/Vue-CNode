@@ -69,7 +69,7 @@
         background-color: #fff;
         padding: 6px 20px;
         border-radius: 5px;
-        border: 1px solid #888
+        border: 1px solid #888;
     }
 
     button{
